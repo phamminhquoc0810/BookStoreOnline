@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Admin</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="~/Content/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Timeline CSS -->
+    <link href="~/Content/timeline.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="~/Content/startmin.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="~/Content/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link rel="stylesheet" href="~/Content/PagedList.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 left-admin-content">
+                <div class="head"><h2>QUẢN LÝ SHOP</h2></div>
+                <div class="list-group">
+                    <a href="@Url.Action("Index","ThongKe")" class="list-group-item-action disabled list-selection-admin"><i class="bi bi-speedometer2"></i>Thống kê</a>
+                    <a href="@Url.Action("Index","OrdersAdmin")" class="list-group-item-action list-selection-admin"><i class="bi bi-receipt-cutoff"></i>Quản lý đơn hàng </a>
+                    <a href="@Url.Action("Index","Products")" class="list-group-item-action list-selection-admin">  <i class="bi bi-book"></i>Quản lý sản phẩm</a>
+                    <a href="@Url.Action("Index","Categories")" class="list-group-item-action list-selection-admin"> <i class="bi bi-shop"></i>Quản lý danh mục</a>
+                    <a href="@Url.Action("Index","QLUsers")" class="list-group-item-action disabled list-selection-admin"><i class="bi bi-person"></i>Quản lý tài khoản</a>
+                </div>
+            </div>
+            <div class="col-lg-9 right-admin-content">
+                <div class="header-admin">
+                    <img src="~/Images/Logo.png" alt="">
+                    <span class="log-out-btn"><a href="/User/LogOut"><i class="bi bi-person-circle"></i> Đăng xuất <i class="bi bi-door-open-fill"></i></a></span>
+                    <div class="body-content">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="~Scripts/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="~/Scripts/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="~/Scripts/raphael.min.js"></script>
+    <script src="~/Scripts/morris.min.js"></script>
+    <script src="~/Scripts/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="~/Scripts/startmin.js"></script>
+</body>
+</html>

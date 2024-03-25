@@ -1,0 +1,28 @@
+﻿@model IEnumerable<BookStoreOnline.Models.Comment>
+
+@{
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <div class="row" style="margin-bottom: 10px">
+        <div class="col-md-2" style="margin-right: -120px;">
+            <img src="~/Images/user-default.png" style="width:30%;height:30px" />
+        </div>
+        <div class="col-md-9">
+            <p>
+                 <strong>@item.User.UserName</strong> 
+            </p>
+            <p>
+                <strong>@item.CommentDate</strong>
+            </p>
+            <span class="active">
+                @item.CommentMsg
+            </span>
+
+        </div>
+    </div>
+}
+
+

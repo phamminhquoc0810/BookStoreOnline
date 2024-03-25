@@ -1,0 +1,85 @@
+﻿@using BookStoreOnline.Models;
+@using PagedList.Mvc;
+@model   PagedList.IPagedList<Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Các thể loại sách</h2>
+
+<p>
+    @Html.ActionLink("Thêm thể loại mới", "Create")
+</p>
+@using (Html.BeginForm("Index", "Categories", new { search = ViewBag.Search }, FormMethod.Get))
+{
+    <p>
+        @Html.TextBox("search", ViewBag.Search as string, new { placeholder = "Tìm kiếm thể loại" })
+        <input type="submit" value="Tìm kiếm" />
+        @if (!string.IsNullOrEmpty(ViewBag.Search as string))
+        {
+            @Html.ActionLink("Trở về", "Index", "Categories", null, new { @class = "btn btn-danger" })
+        }
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            Thể loại
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.CategoryID }) |
+
+                @Html.ActionLink("Xóa", "Delete", new { id = item.CategoryID })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="pager" style="text-align:center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = ViewBag.Search }))
+</div>
+@*<style>
+    .pagination {
+        margin-top: 50px;
+        display: flex;
+        justify-content: center;
+    }
+
+        .pagination a {
+            color: black;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border: 1px solid #4CAF50;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+
+            .pagination a:first-child {
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+            }
+
+            .pagination a:last-child {
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+</style>*@

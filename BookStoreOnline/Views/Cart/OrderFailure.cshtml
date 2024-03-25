@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "OrderFailure";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Đặt hàng thất bại!</h2>
+    <p>Xin lỗi, có lỗi xảy ra trong quá trình xử lý đơn hàng. Vui lòng thử lại sau.</p>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <p>Lỗi chi tiết: @TempData["ErrorMessage"]</p>
+
+        if (TempData["Exception"] != null)
+        {
+            <p>Chi tiết lỗi: @((Exception)TempData["Exception"]).Message</p>
+            <p>StackTrace: @((Exception)TempData["Exception"]).StackTrace</p>
+        }
+    }
+</div>
+

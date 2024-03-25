@@ -1,0 +1,16 @@
+[28/11/2023 11:16:04 SA] Exception caught: An entity object cannot be referenced by multiple instances of IEntityChangeTracker.
+StackTrace:    at System.Data.Entity.Core.Objects.ObjectContext.VerifyContextForAddOrAttach(IEntityWrapper wrappedEntity)
+   at System.Data.Entity.Core.Objects.ObjectContext.AddSingleObject(EntitySet entitySet, IEntityWrapper wrappedEntity, String argumentName)
+   at System.Data.Entity.Core.Objects.DataClasses.RelatedEnd.AddEntityToObjectStateManager(IEntityWrapper wrappedEntity, Boolean doAttach)
+   at System.Data.Entity.Core.Objects.DataClasses.EntityReference.AddEntityToObjectStateManager(IEntityWrapper wrappedEntity, Boolean doAttach)
+   at System.Data.Entity.Core.Objects.DataClasses.RelatedEnd.AddGraphToObjectStateManager(IEntityWrapper wrappedEntity, Boolean relationshipAlreadyExists, Boolean addRelationshipAsUnchanged, Boolean doAttach)
+   at System.Data.Entity.Core.Objects.DataClasses.RelatedEnd.IncludeEntity(IEntityWrapper wrappedEntity, Boolean addRelationshipAsUnchanged, Boolean doAttach)
+   at System.Data.Entity.Core.Objects.DataClasses.EntityReference`1.Include(Boolean addRelationshipAsUnchanged, Boolean doAttach)
+   at System.Data.Entity.Core.Objects.DataClasses.RelationshipManager.AddRelatedEntitiesToObjectStateManager(Boolean doAttach)
+   at System.Data.Entity.Core.Objects.ObjectContext.AddObject(String entitySetName, Object entity)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.<>c__DisplayClass17_0.<Add>b__0()
+   at System.Data.Entity.Internal.Linq.InternalSet`1.ActOnSet(Action action, EntityState newState, Object entity, String methodName)
+   at System.Data.Entity.Internal.Linq.InternalSet`1.Add(Object entity)
+   at System.Data.Entity.DbSet`1.Add(TEntity entity)
+   at BookStoreOnline.Controllers.CartController.InsertOrder(String address, String phone) in D:\BookStoreOnline\BookStoreOnline\Controllers\CartController.cs:line 164
+------------------------------------------------------------------

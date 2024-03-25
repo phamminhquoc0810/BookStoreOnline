@@ -1,0 +1,47 @@
+﻿@using BookStoreOnline.Models;
+@using PagedList.Mvc
+@model PagedList.IPagedList<Order>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Danh sách đơn hàng</h2>
+
+
+<table class="table">
+    <tr>
+        <th>Mã Đơn Hàng</th>
+        <th>Khách hàng</th>
+        <th>Ngày đặt</th>
+        <th>Địa chỉ giao hàng</th>
+        <th>Trạng thái đơn hàng</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.IDOrder</td>
+            <td>@item.User.UserName</td>
+            <td>@String.Format("{0:dd/MM/yyyy}", item.DateOrder)</td>
+            <td>@item.Address</td>
+            @if (item.Status == 0)
+            {
+                <td style="color:red">Chưa xác nhận</td>
+            }
+            else
+            {
+                <td style="color:forestgreen">Đã xác nhận</td>
+
+            }
+            <td><a href="@Url.Action("Details/"+item.IDOrder,"OrdersAdmin")">Xem chi tiết</a></td>
+        </tr>
+    }
+
+
+</table>
+<div class="pager" style="text-align:center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = ViewBag.Search }))
+</div>
+

@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container body-page">
+
+    <div class="row">
+        <div class="col-lg-6" style="height:400px ;">
+            <img src="~/Images/signup.png" alt="" style="width:100%; height: 100%;">
+        </div>
+
+        <div class="col-lg-6 login-box">
+            <h3 style="color: gray ;">Đăng ký</h3>
+            @using (Html.BeginForm("SignUp", "User"))
+            {
+                <span style="color:red">@ViewBag.ThongBaoEmail</span>
+                <div class="form-group">
+                    <input type="text" name="UserName" class="form-control" placeholder="Tên của bạn">
+                </div>
+
+
+                <div class="form-group">
+                    <input type="email" name="Email" class="form-control" placeholder="Email">
+                </div>
+                <div class="form-group">
+                    <input type="diachi" name="Address" class="form-control" placeholder="Địa chỉ">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="Password" class="form-control" placeholder="Mật khẩu đăng nhập">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="rePass" class="form-control" id="exampleInputPassword1"
+                           placeholder="Nhập lại mật khẩu">
+                </div>
+                <span style="color:red">@ViewBag.ThongBao</span>
+                <button type="submit" class="btn-login">Đăng ký ngay</button>
+            }
+
+        </div>
+    </div>
+
+</div>
+

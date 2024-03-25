@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-lg-3 col-md-6">
+    <div class="panel panel-yellow">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-shopping-cart fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">@ViewBag.numOrder</div>
+                    <div>Đơn Hàng</div>
+                </div>
+            </div>
+        </div>
+        <a href="@Url.Action("Index","OrdersAdmin")">
+            <div class="panel-footer">
+                <span class="pull-left">Xem Chi Tiết</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6" bis_skin_checked="1">
+    <div class="panel panel-primary" bis_skin_checked="1">
+        <div class="panel-heading" bis_skin_checked="1">
+            <div class="row" bis_skin_checked="1">
+                <div class="col-xs-3" bis_skin_checked="1">
+                    <i class="fa fa-comments fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right" bis_skin_checked="1">
+                    <div class="huge" bis_skin_checked="1">@ViewBag.numProduct</div>
+                    <div bis_skin_checked="1">Sản Phẩm</div>
+                </div>
+            </div>
+        </div>
+        <a href="@Url.Action("Index","Products")">
+            <div class="panel-footer" bis_skin_checked="1">
+                <span class="pull-left">Xem Chi Tiết</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                <div class="clearfix" bis_skin_checked="1"></div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-support fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">@ViewBag.numOnline</div>
+                    <div>Online</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="col-lg-3 col-md-6">
+    <div class="panel panel-green">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-users fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">@ViewBag.numUser</div>
+                    <div>User</div>
+                </div>
+            </div>
+        </div>
+        <a href="@Url.Action("Index","QLUsers")">
+            <div class="panel-footer">
+                <span class="pull-left">View Details</span>
+                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                <div class="clearfix"></div>
+            </div>
+        </a>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+<div class="panel panel-red">
+    <div class="panel-heading" style="width:350px">
+        <div class="row">
+            <div class="col-xs-3">
+                <i class="fa fa-eye fa-4x"></i>
+            </div>
+            <div class="col-xs-9 text-right">
+                <div class="huge" id="formattedDoanhThu"></div>
+                <div style="font-size:20px">Tổng doanh thu</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<script>
+    // Lấy giá trị từ ViewBag và định dạng số
+    var tongDoanhThu = @ViewBag.TongDoanhThu; // Giả sử ViewBag.TongDoanhThu là số nguyên
+
+    // Định dạng số thành định dạng tiền tệ VND
+    var formattedDoanhThu = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tongDoanhThu);
+
+    // Hiển thị giá trị đã định dạng trong thẻ div
+    document.getElementById('formattedDoanhThu').innerText = formattedDoanhThu;
+</script>
+

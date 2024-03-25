@@ -1,0 +1,55 @@
+﻿@model IEnumerable<BookStoreOnline.Models.Order>
+
+<div class="container body-page">
+    <table class="table">
+        <tr>
+            <th>
+                Tên khách hàng
+            </th>
+            <th>
+                Ngày đặt
+            </th>
+            <th>
+                Địa chỉ giao hàng
+            </th>
+            <th>
+                Phương thức thanh toán
+            </th>
+            <th>
+                Trạng thái
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserName)
+                </td>
+
+                <td>
+                    @String.Format("{0:dd/MM/yyyy}", item.DateOrder)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PaymentMethod)
+                </td>
+
+                @if (item.Status == 0)
+                {
+                    <td style="color:red">Chưa gửi</td>
+                }
+                else
+                {
+                    <td style="color:green">Đã gửi</td>
+                }
+
+            </tr>
+        }
+
+    </table>
+</div>

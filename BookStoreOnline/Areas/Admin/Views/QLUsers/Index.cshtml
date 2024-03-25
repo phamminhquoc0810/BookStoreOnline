@@ -1,0 +1,45 @@
+﻿
+@using BookStoreOnline.Models;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<User>
+@{ 
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Quản Lý Tài Khoản</h2>
+
+@using (Html.BeginForm("Index", "QLUsers", new { search = ViewBag.Search }, FormMethod.Get))
+{
+    <p>
+        @Html.TextBox("search", ViewBag.Search as string, new { placeholder = "Tìm kiếm User" })
+        <input type="submit" value="Tìm kiếm" />
+        @if (!string.IsNullOrEmpty(ViewBag.Search as string))
+        {
+            @Html.ActionLink("Trở về", "Index", "QLUsers", null, new { @class = "btn btn-danger" })
+        }
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>RoleName</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UserID</td>
+            <td>@item.UserName</td>
+            <td>@item.Email</td>
+            <td>@item.Role.RoleName</td>
+
+        </tr>
+    }
+</table>
+<div class="pager" style="text-align:center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, search = ViewBag.Search }))
+</div>
+

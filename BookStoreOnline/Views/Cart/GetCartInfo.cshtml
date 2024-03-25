@@ -1,0 +1,102 @@
+﻿@using BookStoreOnline.Models;
+@model List<Cart>
+@{
+    ViewBag.Title = "GetCartInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var price = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+    var user = Session["TaiKhoan"] as BookStoreOnline.Models.User;
+}
+
+<div class="container body-page">
+    <table class="table">
+        <thead>
+            <tr>
+
+                <th scope="col">Sản phẩm</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Đơn giá</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var cart in Model)
+            {
+                foreach (var item in cart.Items)
+                {
+                    <tr class="prod-list-table">
+
+                        <td class="prod-list-details" style="padding-top: 10px;">
+                            <img src="~/Images/@item.store_product.ImageProd" alt="">
+                            <h5>@item.store_product.ProductName</h5>
+                        </td>
+                        <td>
+
+                            @using (Html.BeginForm("Update_Quantity_Cart", "Cart", FormMethod.Post, new { @class = "edit-quantity" }))
+                            {
+                                <input type="number" name="Quantity" value="@item.store_quantity" min="1">
+                                <input type="hidden" name="ProductID" value="@item.store_product.ProductID" />
+                                <button type="submit"><i class="bi bi-arrow-clockwise"></i></button>
+                            }
+                        </td>
+                        <td>
+                            <h5>@String.Format(price, "{0:c0}", item.store_product.Price)</h5>
+                        </td>
+                        <td><a href="@Url.Action("RemoveCart/","Cart", new { id = item.store_product.ProductID })" class="delete-prod-btn"><i class="bi bi-x-square-fill"></i></a></td>
+                    </tr>
+                }
+
+            }
+
+        </tbody>
+    </table>
+
+    <hr />
+
+    @using (Html.BeginForm("InsertOrder", "Cart", FormMethod.Post, new { @class = "checkout-form" }))
+    {
+        <div class="row infor-order">
+            <div class="col-lg-6">
+                <h5 class="address-title">Thông tin đặt hàng</h5>
+                <hr />
+                <div class="form-group">
+                    <label for="phone">Số điện thoại</label>
+                    <input type="tel" name="phone" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="address">Địa chỉ giao hàng</label>
+                    <textarea name="address" class="form-control" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethod">Phương thức thanh toán</label>
+                    <select name="paymentMethod" class="form-control" required>
+                        <option value="COD">Thanh toán khi nhận hàng (COD)</option>
+                        <option value="PayPal">Thanh toán bằng PayPal</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <table class="table ">
+                    <tr>
+                        <td>Tổng Số lượng sản phẩm</td>
+                        <td>@Model.SelectMany(c => c.Items).Sum(i => i.store_quantity)</td>
+                    </tr>
+                    <tr>
+                        <td>Tổng giá</td>
+                        <td><h4>@String.Format(price, "{0:c0}", Model.Sum(c => c.Total_Money()))</h4></td>
+                    </tr>
+                </table>
+                <button type="submit" class="checkout-btn">Đặt hàng(COD)</button>
+                <a href="/Cart/PaymentWithPayPal" class="btn btn-success">Đặt hàng (Thanh toán PayPal)</a>
+            </div>
+        </div>
+    }
+</div>
+
